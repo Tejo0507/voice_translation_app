@@ -12,4 +12,6 @@ class MicListener:
             audio_chunk = indata[:, 0].copy()
             callback(audio_chunk)
 
-
+        with sd.InputStream(channels=self.channels,
+                            samplerate=self.sample_rate,
+                            blocksize=self.chunk_size,
