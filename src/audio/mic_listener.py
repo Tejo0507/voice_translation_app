@@ -9,4 +9,7 @@ class MicListener:
 
     def start_listening(self, callback):
         def audio_callback(indata, frames, time, status):
+            audio_chunk = indata[:, 0].copy()
+            callback(audio_chunk)
+
 
