@@ -7,4 +7,6 @@ class MicListener:
         self.channels = channels
         self.chunk_size = int(sample_rate * chunk_duration_sec)
 
+    def start_listening(self, callback):
+        def audio_callback(indata, frames, time, status):
 
