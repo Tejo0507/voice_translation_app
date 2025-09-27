@@ -13,5 +13,9 @@ class MicListener:
             callback(audio_chunk)
 
         with sd.InputStream(channels=self.channels,
-                            
-
+                            samplerate=self.sample_rate,
+                            blocksize=self.chunk_size,
+                            callback=audio_callback):
+            print("Listening... Press Ctrl+C to stop.")
+            while True:
+                sd.sleep(int(1000 * self.chunk_size / self.sample_rate))
