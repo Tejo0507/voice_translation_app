@@ -17,3 +17,9 @@ class NeuralTranslator:
     def translate(self, text, src_lang="eng_Latn", tgt_lang="fra_Latn"):
         inputs = self.tokenizer(text, return_tensors="pt").to(self.device)
         forced_bos_token_id = self.get_lang_token_id(tgt_lang)
+        generated_tokens = self.model.generate(
+            **inputs,
+            forced_bos_token_id=forced_bos_token_id
+        )
+        translated_text = self.tokenizer.batch_decode(generated_tokens, skip_special_tokens=True)[0]
+        return translated_text
