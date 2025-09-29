@@ -13,3 +13,7 @@ class NeuralTranslator:
         if token_id is None:
             raise ValueError(f"Language token {lang_token} not found in tokenizer vocabulary.")
         return token_id
+
+    def translate(self, text, src_lang="eng_Latn", tgt_lang="fra_Latn"):
+        inputs = self.tokenizer(text, return_tensors="pt").to(self.device)
+        forced_bos_token_id = self.get_lang_token_id(tgt_lang)
