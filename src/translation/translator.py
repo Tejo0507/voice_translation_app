@@ -6,3 +6,7 @@ class NeuralTranslator:
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name).to(self.device)
+
+    def get_lang_token_id(self, lang_code):
+        lang_token = f"<2{lang_code}>"
+        token_id = self.tokenizer.get_vocab().get(lang_token)
