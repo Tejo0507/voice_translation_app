@@ -10,3 +10,6 @@ class NeuralTranslator:
     def get_lang_token_id(self, lang_code):
         lang_token = f"<2{lang_code}>"
         token_id = self.tokenizer.get_vocab().get(lang_token)
+        if token_id is None:
+            raise ValueError(f"Language token {lang_token} not found in tokenizer vocabulary.")
+        return token_id
